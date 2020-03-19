@@ -36,7 +36,7 @@
                         <span>of {{totalPages}}</span>
                         <img class="right-icon" src="~/Assets/right-arrow.png" v-on:click="nextPage" />
                         <img class="right-icon" src="~/Assets/to-end.png" v-on:click="goToLastPage"/>
-                        @*<span>Displaying {{()}} of {{pageSize}}</span>*@
+                        <span class="display-movies">Displaying {{(pageToShow - 1) * pageSize + 1}} of {{totalMovies}}</span>
                     </td>
                 </tr>
             </tbody>            

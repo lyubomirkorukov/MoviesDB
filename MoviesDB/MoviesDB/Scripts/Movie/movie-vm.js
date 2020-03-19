@@ -12,6 +12,7 @@
             data: {
                 page: 1,
                 pageSize: pageSize,
+                pageToShow: 1,
                 totalMovies: 0,
                 totalPages: 0,
                 pagesNumber: 0,
@@ -47,10 +48,10 @@
                 director: function (newValue) {
                     self.validateField(newValue, 'director', 'Director', /^[0-9a-zA-Z\s#,\.!';:\)\(&/?-]{1,100}$/);
                 },
-                dateReleased: function (newValue) {
-                    var passedDate = new Date(newValue);
+                dateReleased: function (newValue) {                    
+                    var passedDate = new Date(newValue,);
                     var currentDate = new Date();
-
+                    
                     if (passedDate > currentDate) {
                         self.vm.errors.dateReleased = 'Release Date cannot be a future date';
                     } else {
@@ -71,6 +72,7 @@
     self.goToFirstPage = function () {
         if (self.vm.page !== 1) {
             self.vm.page = 1;
+            self.vm.pageToShow = 1;
             self.vm.movies = self.getMovies();
         }
     };
@@ -78,6 +80,7 @@
     self.goToLastPage = function () {
         if (self.vm.page !== self.vm.totalPages) {
             self.vm.page = self.vm.totalPages;
+            self.vm.pageToShow = self.vm.totalPages;
             self.vm.movies = self.getMovies();
         }
     };
@@ -88,6 +91,7 @@
             alert('Invalid page number entered');
         } else if (page >= parseInt(self.vm.page) && page <= parseInt(self.vm.totalPages)) {
             self.vm.page = page;
+            self.vm.pageToShow = page;
             self.vm.movies = self.getMovies();
         } else {
             alert('Page number is not within range');
@@ -98,6 +102,7 @@
         var tempPage = self.vm.page - 1;
         if (tempPage >= 1) {
             self.vm.page--;
+            self.vm.pageToShow--;
             self.vm.movies = self.getMovies();
         }
     };
@@ -106,6 +111,7 @@
         var tempPage = self.vm.page + 1;
         if (tempPage <= self.vm.totalPages) {
             self.vm.page++;
+            self.vm.pageToShow++;
             self.vm.movies = self.getMovies();
         }
     };
@@ -148,6 +154,7 @@
             data.movie.director = self.vm.director;
             data.movie.dateReleased = commonJs.getFormattedDate(self.vm.dateReleased);
             data.page = self.vm.page;
+            data.pageToShow = self.vm.page;
             data.pageSize = self.vm.pageSize;
             
             self.movieIo.upsertMovie(data, function (response) {
@@ -166,6 +173,7 @@
                 self.vm.totalPages = Math.ceil(response.Data.TotalMovies / parseInt(self.vm.pageSize));
                 self.vm.totalMovies = response.Data.TotalMovies;
                 self.vm.page = parseInt(response.Data.Page);
+                self.vm.pageToShow = parseInt(response.Data.Page);
                 self.vm.pageSize = parseInt(response.Data.PageSize);
                 self.vm.movies = response.Data.Movies;
                 
@@ -189,6 +197,7 @@
             self.vm.totalPages = Math.ceil(response.Data.TotalMovies / parseInt(self.vm.pageSize));
             self.vm.totalMovies = response.Data.TotalMovies;
             self.vm.page = parseInt(response.Data.Page);
+            self.vm.pageToShow = parseInt(response.Data.Page);
             self.vm.pageSize = parseInt(response.Data.PageSize);
 
             self.vm.movies.forEach(function (m) {

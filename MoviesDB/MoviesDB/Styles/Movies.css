@@ -145,6 +145,11 @@ h2 {
     outline: none;
 }
 
+.display-movies {
+    float: right;
+    margin-right: 20px;
+    margin-top: 3px;
+}
 
 label {
     text-align: left;
