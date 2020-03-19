@@ -4,8 +4,7 @@
 @model MoviesDB.Models.Web.MovieWebModel
 
 <div id="movie-list-wrapper" class="movie-list-wrapper" v-cloak>
-    @Html.Hidden("PageSize", Model.PageSize)
-    <h2>Movies List</h2>
+    @Html.Hidden("PageSize", Model.PageSize)    
     <div>
         <table class="table table-bordered movie-table">
             <thead>
@@ -43,7 +42,7 @@
             </tbody>            
         </table>
 
-        <button class="btn btn-primary add-btn" v-on:click="openModal('Add New', 'Add')">Add New</button>
+        <button class="btn btn-primary custom-btn" v-on:click="openModal('Add New', 'Add')">Add New</button>
     </div>
 
     @Html.Partial("Modals/MovieModal")

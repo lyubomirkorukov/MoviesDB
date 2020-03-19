@@ -16,8 +16,8 @@
 
 .modalVisible {
     display: block;
-    width: 350px;
-    height: 300px;
+    width: 300px;
+    height: 250px;
     background-color: white;    
     margin: 0 auto;
     margin-top: 50px;
@@ -29,11 +29,15 @@
 }
 
 .date {
-    width: 250px;
+    width: 190px;
 }
 
 .close {
-    margin: 5px 5px;
+    margin: 0px;
+    background-color: #5b9bd5 !important;
+    width: 17px;
+    height: 20px;
+    text-shadow: none;
 }
 
 .bootstrap-datetimepicker-widget {
@@ -76,6 +80,7 @@
 .movie-table {
     width: 500px;
     margin: 0 auto;
+    margin-top: 70px;
 }
 
 h2 {
@@ -105,11 +110,12 @@ h2 {
     height: 20px;
 }
 
-.add-btn {
+.custom-btn {
     height: 25px;
     padding: 0 4px;
     margin-top: 10px;
     border-radius: 2px;
+    min-width: 90px;
 }
 
 .col-1 {
@@ -130,11 +136,48 @@ h2 {
 
 .input-field, .input-group .form-control {
     height: 20px;
-    width: 150px;
+    width: 180px;
     background-color: #5b9bd5;
     color: white;
 }
 
+.input-field:focus, .input-group .form-control:focus {
+    outline: none;
+}
+
+
 label {
     text-align: left;
+}
+
+.movie-modal .input-group-addon {
+    padding: 4px !important;
+     background-color: initial;
+     border: 0;
+}
+
+.date {
+    padding-left: 15px !important;
+}
+
+.modal-container {
+    margin-left: 35px;
+    margin-top: 40px;
+}
+
+.close-btn {
+    float: right;
+    margin-right: 30px;
+}
+
+.modal-title-container {
+    position: relative;
+}
+
+.modal-title {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background-color: white;
+    padding: 0 40px 0 4px;
 }

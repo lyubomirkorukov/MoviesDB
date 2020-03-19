@@ -17,7 +17,7 @@
                 pagesNumber: 0,
                 modalTitle: '',
                 buttonText: '',
-                isMovieModalVisible: true,
+                isMovieModalVisible: false,
                 id: '',
                 title: '',
                 director: '',
@@ -69,14 +69,14 @@
     };
 
     self.goToFirstPage = function () {
-        if (self.vm.page != 1) {
+        if (self.vm.page !== 1) {
             self.vm.page = 1;
             self.vm.movies = self.getMovies();
         }
     };
 
     self.goToLastPage = function () {
-        if (self.vm.page != self.vm.totalPages) {
+        if (self.vm.page !== self.vm.totalPages) {
             self.vm.page = self.vm.totalPages;
             self.vm.movies = self.getMovies();
         }
