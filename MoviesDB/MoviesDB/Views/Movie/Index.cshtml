@@ -1,0 +1,51 @@
+﻿@Styles.Render("~/styles/Movies.css")
+@Scripts.Render("~/scripts/Movie/movie-vm.js")
+
+@model MoviesDB.Models.Web.MovieWebModel
+
+<div id="movie-list-wrapper" class="movie-list-wrapper" v-cloak>
+    @Html.Hidden("PageSize", Model.PageSize)
+    <h2>Movies List</h2>
+    <div>
+        <table class="table table-bordered movie-table">
+            <thead>
+                <tr class="head-row">
+                    <th scope="col" class="col-1"></th>
+                    <th scope="col" class="col-2"></th>
+                    <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-4">Title</th>
+                    <th scope="col" class="col-3">Director</th>
+                    <th scope="col" class="col-4">Date released</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="movie in movies" class="movie-row">
+                    <td scope="row" class="modal-button col-1" v-on:click="openModal('Edit Movie', 'Save', movie)">Edit</td>
+                    <td class="modal-button col-1" v-on:click="openModal('View Movie', '', movie)">Details</td>
+                    <td class="col-1">{{movie.Id}}</td>
+                    <td class="col-4">{{movie.Title}}</td>
+                    <td class="col-3">{{movie.Director}}</td>
+                    <td class="col-4">{{movie.DateReleased}}</td>
+                </tr>
+                <tr class="paging-row">
+                    <td colspan="6">
+                        <img class="left-icon" src="~/Assets/to-beginning.png" v-on:click="goToFirstPage" />
+                        <img class="left-icon" src="~/Assets/left-arrow.png" v-on:click="prevPage" />
+                        <span>Page</span>
+                        <input type="text" v-model="page" class="page-number" v-on:keyup.enter="pageEntered" />
+                        <span>of {{totalPages}}</span>
+                        <img class="right-icon" src="~/Assets/right-arrow.png" v-on:click="nextPage" />
+                        <img class="right-icon" src="~/Assets/to-end.png" v-on:click="goToLastPage"/>
+                        @*<span>Displaying {{()}} of {{pageSize}}</span>*@
+                    </td>
+                </tr>
+            </tbody>            
+        </table>
+
+        <button class="btn btn-primary add-btn" v-on:click="openModal('Add New', 'Add')">Add New</button>
+    </div>
+
+    @Html.Partial("Modals/MovieModal")
+</div>
+

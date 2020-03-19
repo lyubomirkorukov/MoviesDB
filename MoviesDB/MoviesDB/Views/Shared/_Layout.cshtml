@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title (Movies DB)</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")    
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <hr />
+            <p>Movies DB App</p>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
